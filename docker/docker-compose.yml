@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  rpa-app:
+    build:
+      context: ./docker-rpa
+      dockerfile: Dockerfile
+    container_name: rpa-app
+    ports:
+      - "5000:5000"
+    devices:
+      - "/dev/ttyACM0:/dev/ttyACM0"
+      - "/dev/video0:/dev/video0"
+    environment:
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
+
+  logic2:
+    build:
+      context: ./docker-logic2
+      dockerfile: Dockerfile
+    container_name: logic2
+    ports:
+      - "8080:8080"
+    privileged: true
+    volumes:
+      - "./docker-logic2/shared:/root/shared"
+    devices:
+      - "/dev/bus/usb/002/003:/dev/bus/usb/002/003"
+    cap_add:
+      - SYS_ADMIN
+      - SYS_RAWIO
