@@ -23,4 +23,4 @@ For the virtual display setup, Xtigervnc starts on display 0 and listens on port
 The files contained within the [Arduino](https://github.com/DSUmjham/remote-protocol-analyzer/tree/main/arduino) folder are a sample project used in the demo. The .ino file shows how a program can be written to carry out specific actions based on Serial input. 
 
 ## Resources
-* [Saleae Logic 2]([https://support.saleae.com/logic-software/sw-download])
+* [Saleae Logic 2](https://support.saleae.com/logic-software/sw-download)
