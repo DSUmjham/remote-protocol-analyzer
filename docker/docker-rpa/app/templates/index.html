@@ -22,25 +22,21 @@
 			<button id="resetBtn" type="button" class="control_button">Reset</button><br />
 			<button id="transmitBtn" type="button" class="control_button">Transmit</button>
 			<h2>Project Info</h2>
-			<a href="/cdn-cgi/l/email-protection#8ac7e3e1efa4c2ebe7caeef9ffa4efeeff"><span class="__cf_email__"
-					data-cfemail="5a1733313f74123b371a3e292f743f3e2f">[email&#160;protected]</span></a><br />
+			<a href="mailto:Mike.Ham@dsu.edu">Mike.Ham@dsu.edu</a><br />
 			<a href="https://github.com/DSUmjham/remote-protocol-analyzer">GitHub Repo</a><br />
 			<a href="https://github.com/DSUmjham/remote-protocol-analyzer" target="_blank">
 				<img width="100%" src="{{ url_for('static', filename='images/git-qr-link.png') }}" />
 			</a>
-			<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-			<script type="d28ca96ec962864093c876e4-text/javascript">
-						document.getElementById("resetBtn").addEventListener('click', function() {
-							fetch("/reset");
-						})
-						document.getElementById("transmitBtn").addEventListener('click', function() {
-							fetch("/transmit");
-						})
-					</script>
+			<script>
+				document.getElementById("resetBtn").addEventListener('click', function () {
+					fetch("/reset");
+				})
+				document.getElementById("transmitBtn").addEventListener('click', function () {
+					fetch("/transmit");
+				})
+			</script>
 		</div>
 	</div>
-	<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
-		data-cf-settings="d28ca96ec962864093c876e4-|49" defer></script>
 </body>
 
 </html>
