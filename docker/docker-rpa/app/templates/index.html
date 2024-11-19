@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
-<title>RPA</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+<head>
+	<title>RPA</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
 
 <body>
 	<div class="container">
 		<div class="header">
-			<h1>Remote Protocol Analyzer</h1>
+			<h1 class="title">Remote Protocol Analyzer</h1>
+			<div class="user-info">
+				<span>{{ username }}</span>
+				<a href="{{ url_for('logout') }}">Logout</a>
+			</div>
 		</div>
 		<div class="logic">
 			<h2>Saleae Remote Connection</h2>
@@ -19,8 +26,8 @@
 				<img width="100%" src="{{ url_for('video') }}" />
 			</a>
 			<h3>Hardware Controls</h3>
-			<button id="resetBtn" type="button" class="control_button">Reset</button><br />
-			<button id="transmitBtn" type="button" class="control_button">Transmit</button>
+			<button id="resetBtn" type="button">Reset</button><br />
+			<button id="transmitBtn" type="button">Transmit</button>
 			<h2>Project Info</h2>
 			<a href="mailto:Mike.Ham@dsu.edu">Mike.Ham@dsu.edu</a><br />
 			<a href="https://github.com/DSUmjham/remote-protocol-analyzer">GitHub Repo</a><br />
