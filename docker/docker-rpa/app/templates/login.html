@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>RPA - Login</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+	{% block content %}
+	<div class="login">
+		<div class="header">
+			<h1 class="title">Remote Protocol Analyzer</h1>
+		</div>
+		<div class="login_form">
+			<form method="POST" action="{{ url_for('account') }}">
+				<h2>Login</h2>
+				<label for="username">Username</label>
+				<input type="text" name="username" id="username" required>
+				<label for="password">Password</label>
+				<input type="password" name="password" id="password" required>
+				<button type="submit" name="action" value="login">Log In</button>
+				<button type="submit" name="action" value="signup">Sign Up</button>
+			</form>
+		</div>
+		<div class="login_error">
+			{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+			<div id="flash-messages">
+				{% for category, message in messages %}
+				<p class="flash {{ category }}">{{ message }}</p>
+				{% endfor %}
+			</div>
+			{% endif %}
+			{% endwith %}
+		</div>
+	</div>
+	{% endblock %}
+</body>
+
+<script>
+	// Auto-hide flash messages after 5 seconds
+	setTimeout(() => {
+		const flashMessages = document.getElementById('flash-messages');
+		if (flashMessages) {
+			flashMessages.style.visibility = 'hidden';
+		}
+	}, 5000);
+</script>
