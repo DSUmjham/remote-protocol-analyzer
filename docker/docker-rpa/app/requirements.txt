@@ -3,6 +3,8 @@ certifi
 charset-normalizer
 click
 Flask
+flask-sqlalchemy 
+flask-login
 grpcio
 idna
 itsdangerous
