@@ -13,6 +13,7 @@ services:
       - "/dev/video0:/dev/video0"
     environment:
       - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
+      - SECRET_KEY=dev-secret-key
 
   logic2:
     build:
