@@ -99,6 +99,21 @@ button:active {
 	color: white;
 }
 
+.heading-container {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+}
+
+.heading-container h2 {
+	margin: 0;
+}
+
+.heading-container button {
+	flex-shrink: 0;
+	margin-left: 1em;
+}
+
 .title {
 	flex-grow: 1;
 	text-align: center;
@@ -108,15 +123,12 @@ button:active {
 .user-info {
 	display: flex;
 	gap: 1em;
-	/* Space between username and logout link */
 	font-size: 1em;
 	white-space: nowrap;
-	/* Prevent text wrapping */
 }
 
 .user-info a {
 	color: #00A9E0;
-	/* LightBLUE */
 	text-decoration: none;
 }
 
