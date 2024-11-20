@@ -16,7 +16,14 @@
 			</div>
 		</div>
 		<div class="logic">
-			<h2>Saleae Remote Connection</h2>
+			<div class="heading-container">
+				<h2>Saleae Remote Connection</h2>
+				<a href="{{ url_for('upload_file') }}">
+					<button id="uploadBtn" type="button" title="Upload Python or JSON files for extension">
+						Upload Extension
+					</button>
+				</a>
+			</div>
 			<iframe allowfullscreen height="100%"
 				src="http://127.0.0.1:8080/vnc.html?path=vnc&autoconnect=true&resize=scale&reconnect=true&show_dot=true"></iframe>
 		</div>
