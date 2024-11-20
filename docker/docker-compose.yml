@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: rpa-app
     ports:
-      - "5000:5000"
+      - "5001:5001"
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0"
       - "/dev/video0:/dev/video0"
@@ -16,6 +16,7 @@ services:
       - SECRET_KEY=dev-secret-key
     volumes:
       - uploads:/app/uploads
+      - ./docker-rpa/app/static:/app/static
 
   logic2:
     build:
@@ -33,3 +34,17 @@ services:
     cap_add:
       - SYS_ADMIN
       - SYS_RAWIO
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./docker-rpa/app/static:/app/static
+    depends_on:
+      - rpa-app
+
+volumes:
+    uploads:

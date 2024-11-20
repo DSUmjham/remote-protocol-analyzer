@@ -6,6 +6,7 @@ Flask
 flask-sqlalchemy 
 flask-login
 grpcio
+gunicorn
 idna
 itsdangerous
 Jinja2

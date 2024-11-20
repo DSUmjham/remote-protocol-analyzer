@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+from sqlalchemy.exc import IntegrityError, OperationalError
 import cv2, os, serial, time
 
 # initialize extensions globally
@@ -60,18 +61,25 @@ def create_app():
 	
 	# database initialization and seeding with default credentials
 	with app.app_context():
-		db.create_all()
-		print("Database tables created (if not already present).")
+		try: 
+			User.query.first()
+		except OperationalError:
+			db.create_all()
+			print("Database tables created (if not already present).")
 
 		# Seed an admin user if not already exists
 		if not User.query.filter_by(username="admin").first():
-			admin_user = User(
-				username="admin",
-				password=generate_password_hash("admin123", method="pbkdf2:sha256:600000"),
-			)
-			db.session.add(admin_user)
-			db.session.commit()
-			print("Admin user created with default credentials.")
+			try:
+				admin_user = User(
+					username="admin",
+					password=generate_password_hash("admin123", method="pbkdf2:sha256:600000"),
+				)
+				db.session.add(admin_user)
+				db.session.commit()
+				print("Admin user created with default credentials.")
+			except IntegrityError:
+				db.session.rollback()
+				print("Admin user already exists.")
 	
 	# register routes
 	register_routes(app, camera, arduino)
