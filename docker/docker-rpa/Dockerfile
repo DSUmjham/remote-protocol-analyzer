@@ -20,6 +20,7 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY app /app
  
 # Specify the command to run on container start
+RUN python init_db.py
 CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5001", "app:create_app()"]
  
 # Expose the port Flask runs on (default is 5000)
