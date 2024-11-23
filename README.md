@@ -19,6 +19,9 @@ Logic 2, an Electron-based application, functions best with a GUI. While it can 
 
 For the virtual display setup, Xtigervnc starts on display 0 and listens on port 5900. easy-novnc then bridges this VNC server (port 5900) to a web-accessible port (8080), enabling browser-based interaction. The bspwm window manager initializes next, setting the DISPLAY environment variable to route output to display 0. Finally, Logic 2 launches, utilizing display 0 for its GUI.
 
+### nginx
+The web server proxies traffic from port 80 to the gunicorn service's port 5001.
+
 ## Arduino
 The files contained within the [Arduino](https://github.com/DSUmjham/remote-protocol-analyzer/tree/main/arduino) folder are a sample project used in the demo. The .ino file shows how a program can be written to carry out specific actions based on Serial input. 
 
