@@ -174,10 +174,8 @@ if __name__ == "__main__":
 	app = create_app()
 
 	# define key paths for TLS
-	# cert_path = "/app/certs/cert.pem"
-	# key_path = "/app/certs/key.pem"
-	cert_path = "/Users/mjham/DSU/remote-protocol-analyzer/docker/docker-rpa/app/certs/cert.pem"
-	key_path = "/Users/mjham/DSU/remote-protocol-analyzer/docker/docker-rpa/app/certs/key.pem"
+	cert_path = "/app/certs/cert.pem"
+	key_path = "/app/certs/key.pem"
 
 	# create self-signed certs if none were provided
 	if not os.path.exists(cert_path) or not os.path.exists(key_path):
