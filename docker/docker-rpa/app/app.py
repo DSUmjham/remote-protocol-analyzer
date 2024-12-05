@@ -145,19 +145,19 @@ def register_routes(app, camera, arduino):
 	@app.route("/upload", methods=["GET", "POST"])
 	def upload_file():
 		if request.method == "POST":
-			# Check if the file is in the request
+			# check if the file is in the request
 			if 'file' not in request.files:
 				flash('No file part', 'error')
 				return redirect(request.url)
 
 			file = request.files['file']
 
-			# Check if a file was uploaded
+			# check if a file was uploaded
 			if file.filename == '':
 				flash('No selected file', 'error')
 				return redirect(request.url)
 
-			# Validate file type
+			# validate file type
 			if allowed_file(file.filename):
 				filename = secure_filename(file.filename)
 				file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -172,4 +172,18 @@ def register_routes(app, camera, arduino):
 # run the application
 if __name__ == "__main__":
 	app = create_app()
-	app.run(host="0.0.0.0", port=5001, debug=True)
+
+	# define key paths for TLS
+	# cert_path = "/app/certs/cert.pem"
+	# key_path = "/app/certs/key.pem"
+	cert_path = "/Users/mjham/DSU/remote-protocol-analyzer/docker/docker-rpa/app/certs/cert.pem"
+	key_path = "/Users/mjham/DSU/remote-protocol-analyzer/docker/docker-rpa/app/certs/key.pem"
+
+	# create self-signed certs if none were provided
+	if not os.path.exists(cert_path) or not os.path.exists(key_path):
+		os.makedirs("/app/certs", exist_ok=True)
+		os.system(f"openssl req -x509 -nodes -days 365 -newkey rsa:2048 "
+				  f"-keyout {key_path} -out {cert_path} "
+				  f"-subj '/CN=localhost'")
+
+	app.run(host="0.0.0.0", port=5001, ssl_context=(cert_path, key_path))
