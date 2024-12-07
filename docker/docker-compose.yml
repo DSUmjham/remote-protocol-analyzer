@@ -48,6 +48,7 @@ services:
       - ./docker-rpa/app/static:/app/static
     depends_on:
       - rpa-app
+      - logic2
 
 volumes:
     uploads:
